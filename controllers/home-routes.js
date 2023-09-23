@@ -1,41 +1,70 @@
-const router = require("express").Router();
-const { Post, User, Comment } = require("../models");
-const withAuth = require("../utils/auth");
+const express = require("express");
+const router = express.Router();
+const { Post, Comment, User } = require("../models/");
 
-// Homepage route
+// Middleware for checking if a user is logged in
+const checkLoggedIn = (req, res, next) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+};
+
+// Error handling middleware
+const handleErrors = (res, err) => {
+  console.error(err);
+  res.status(500).json({ error: "An internal server error occurred." });
+};
+
+// GET all posts
 router.get("/", async (req, res) => {
   try {
-    // Fetch all posts from the database
     const postData = await Post.findAll({
+      include: [User],
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render("posts", { posts });
+  } catch (err) {
+    handleErrors(res, err);
+  }
+});
+
+// GET a single post by ID
+router.get("/post/:id", async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
       include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
+        User,
         {
           model: Comment,
-          attributes: ["text", "user_id"],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
+          include: [User],
         },
       ],
     });
 
-    // Serialize the data for rendering
-    const posts = postData.map((post) => post.get({ plain: true }));
+    if (postData) {
+      const post = postData.get({ plain: true });
 
-    // Check if the user is logged in
-    const loggedIn = req.session.logged_in;
-
-    res.render("homepage", {
-      posts,
-      loggedIn,
-    });
+      res.render("single-post", { post });
+    } else {
+      res.status(404).end();
+    }
   } catch (err) {
-    res.status(500).json(err);
+    handleErrors(res, err);
   }
+});
+
+// Render login page
+router.get("/login", checkLoggedIn, (req, res) => {
+  res.render("login");
+});
+
+// Render signup page
+router.get("/signup", checkLoggedIn, (req, res) => {
+  res.render("signup");
 });
 
 module.exports = router;
