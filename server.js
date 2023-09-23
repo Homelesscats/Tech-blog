@@ -5,6 +5,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const helpers = require("./utils/helpers");
 const PORT = process.env.PORT || 3003;
+
 const sequelize = require("./config/config");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -30,12 +31,13 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-
+/*
 app.get("/", (req, res) =>
   res.send("welcome to the mvc tech blog, This IS the home page")
 );
+*/
 
 app.use(require("./controllers/"));
 
