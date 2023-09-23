@@ -5,6 +5,9 @@ const session = require("express-session");
 
 const PORT = process.env.PORT || 3003;
 
+const sequelize = require("./config/config");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+
 const sess = {
   secret: "Super secret secret",
   cookie: {
@@ -24,8 +27,6 @@ app.use(session(sess));
 
 app.get("/", (req, res) => res.send("welcome to the mvc tech blog"));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
-
-// npm i connect-session-sequelize
