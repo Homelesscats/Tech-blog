@@ -1,0 +1,50 @@
+/* Style for the entire navigation bar */
+* {
+  font-family: "Space Mono", monospace;
+}
+
+.navbar {
+  background-color: #333; /* Background color */
+  color: white; /* Text color */
+  padding: 10px 0; /* Add some padding for better spacing */
+  text-align: center; /* Center-align the navigation items */
+}
+
+/* Style for the navigation list */
+.navbar ul {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Display the list items in a row */
+  justify-content: center; /* Center-align the items */
+  align-items: center; /* Vertically center-align the items */
+}
+
+/* Style for each navigation item */
+.nav-item {
+  margin: 0 20px; /* Add horizontal spacing between items */
+}
+
+/* Style for the links in the navigation bar */
+.nav-item a {
+  text-decoration: none; /* Remove underlines from links */
+  color: white; /* Link text color */
+  font-weight: bold; /* Make the text bold */
+  font-size: 18px; /* Increase font size */
+  transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+/* Change link color on hover */
+.nav-item a:hover {
+  color: #ff6600; /* Change color on hover (e.g., orange) */
+}
+
+#footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
