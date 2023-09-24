@@ -1,26 +1,23 @@
 const router = require("express").Router();
-const { Comment } = require("../../models/");
+const { Post } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// Create a new comment
+// Create a new post
 router.post("/", withAuth, async (req, res) => {
   const body = req.body;
 
   try {
-    const newComment = await Comment.create({
-      ...body,
-      userId: req.session.userId,
-    });
-    res.json(newComment);
+    const newPost = await Post.create({ ...body, userId: req.session.userId });
+    res.json(newPost);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// Update an existing comment by ID
+// Update an existing post by ID
 router.put("/:id", withAuth, async (req, res) => {
   try {
-    const [affectedRows] = await Comment.update(req.body, {
+    const [affectedRows] = await Post.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -36,10 +33,10 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
-// Delete a comment by ID
+// Delete a post by ID
 router.delete("/:id", withAuth, async (req, res) => {
   try {
-    const [affectedRows] = await Comment.destroy({
+    const [affectedRows] = await Post.destroy({
       where: {
         id: req.params.id,
       },

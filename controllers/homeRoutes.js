@@ -56,7 +56,6 @@ router.get("/post/:id", async (req, res) => {
     handleErrors(res, err);
   }
 });
-
 // Render login page
 router.get("/login", checkLoggedIn, (req, res) => {
   res.render("login");

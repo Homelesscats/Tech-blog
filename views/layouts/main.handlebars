@@ -15,13 +15,13 @@
     <h1 id="headline">Tech Blog: Journal for the junior developer-Gilbert Perez
     </h1>
     <ul>
-      <li class="li-inline nav-item"><a href="/">Home</a></li>
-      <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
-      <li class="li-inline nav-item"><a href="/login">Login</a></li>
-      <li class="li-inline nav-item"><a
-          href="#"
-          id="logout-link"
-        >Logout</a></li>
+      <li class="nav-item"><a class="nav-link-home" href="/">Home</a></li>
+      <li class="nav-item"><a
+          class="nav-link"
+          href="./dashboard"
+        >Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+      <li class="nav-item"><a href="logout" id="logout-link">Logout</a></li>
     </ul>
   </nav>
 
@@ -31,11 +31,13 @@
 
       <p>MAIN AREA</p>
       {{{body}}}
+
     </main>
 
     <footer class="flex-row justify-center" id="footer">
       <p class="footer-text"><p>&copy; 2023 GPTechBlog. All Rights Reserved.</p>
       </p>
     </footer>
+    <script src="/js/logout.js"></script>
   </body>
 </html>

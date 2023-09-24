@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Post 1",
+    "content": "This is the content of Post 1.",
+    "date_created": "2023-09-23T08:00:00Z",
+    "user_id": 1
+  },
+  {
+    "name": "Post 2",
+    "content": "This is the content of Post 2.",
+    "date_created": "2023-09-24T10:30:00Z",
+    "user_id": 2
+  },
+  {
+    "name": "Post 3",
+    "content": "This is the content of Post 3.",
+    "date_created": "2023-09-25T14:15:00Z",
+    "user_id": 1
+  }
+]

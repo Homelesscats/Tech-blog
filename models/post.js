@@ -17,15 +17,13 @@ Post.init(
   {
     sequelize,
     // You can add indexes here if needed, e.g.,:
-    // indexes: [
-    //   {
-    //     unique: true,
-    //     fields: ["title"],
-    //   },
-    // ],
+    indexes: [
+      {
+        unique: true,
+        fields: ["title"],
+      },
+    ],
   }
 );
-
-// You can add comments or documentation here to describe the purpose of the Post model.
 
 module.exports = Post;
